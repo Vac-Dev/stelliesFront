@@ -82,24 +82,23 @@
           length: answers.q3
         };
 
-        try {
-          const res = await fetch('http://localhost:3000/api/book-recommendation', {
-            // Replace with your deployed backend URL in production
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
+       try {
+  const res = await fetch('https://stelliebackend.fly.dev/api/book-recommendation', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
 
-          const data = await res.json();
-          resultDiv.innerHTML = `
-            <p class="font-semibold text-gray-800">We think you’ll love:</p>
-            <p class="mt-2 text-lg text-emerald-600">“${data.title}”</p>
-            <p class="mt-1 text-gray-700">by ${data.author}</p>
-          `;
-        } catch (err) {
-          resultDiv.innerHTML = `<p class="text-red-600">Oops, something went wrong.</p>`;
-          console.error(err);
-        }
+  const data = await res.json();
+  resultDiv.innerHTML = `
+    <p class="font-semibold text-gray-800">We think you’ll love:</p>
+    <p class="mt-2 text-lg text-emerald-600">“${data.title}”</p>
+    <p class="mt-1 text-gray-700">by ${data.author}</p>
+  `;
+} catch (err) {
+  resultDiv.innerHTML = `<p class="text-red-600">Oops, something went wrong.</p>`;
+  console.error(err);
+}
       });
     </script>
   </body>
