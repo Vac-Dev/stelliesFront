@@ -1,98 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-black text-white">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Match Quiz</title>
     <link href="/dist/styles.css" rel="stylesheet" />
   </head>
-  <body class="min-h-screen flex items-center justify-center bg-black p-4">
-    <div class="w-full max-w-2xl bg-white text-black rounded-xl shadow-lg p-6 space-y-6">
-      <h1 class="text-3xl font-bold text-emerald-700 text-center">Find Your Next Read</h1>
+  <body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow p-6 space-y-6">
+      <h1 class="text-3xl font-bold text-gray-800 text-center">Find Your Next Read</h1>
 
       <!-- Question 1 -->
       <div id="q1" class="space-y-2">
-        <p class="font-medium">1. What kind of story pace are you in the mood for?</p>
-        <div class="grid gap-2">
-          <button data-q="q1" data-a="Fast and plot-heavy" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Fast and plot-heavy</button>
-          <button data-q="q1" data-a="Slow and emotional" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Slow and emotional</button>
-          <button data-q="q1" data-a="Balanced" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Balanced</button>
-          <button data-q="q1" data-a="Light and easy" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Light and easy</button>
-          <button data-q="q1" data-a="Intense and thought-provoking" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Intense and thought-provoking</button>
+        <p class="font-medium">1. Your mood today?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-q="q1" data-a="Adventurous" class="option-btn btn">Adventurous</button>
+          <button data-q="q1" data-a="Cozy" class="option-btn btn">Cozy</button>
+          <button data-q="q1" data-a="Thoughtful" class="option-btn btn">Thoughtful</button>
         </div>
       </div>
 
       <!-- Question 2 -->
       <div id="q2" class="space-y-2">
-        <p class="font-medium">2. What kind of world do you want to escape into?</p>
-        <div class="grid gap-2">
-          <button data-q="q2" data-a="Realistic and relatable" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Realistic and relatable</button>
-          <button data-q="q2" data-a="Historical" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Historical</button>
-          <button data-q="q2" data-a="Magical or fantastical" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Magical or fantastical</button>
-          <button data-q="q2" data-a="Futuristic or dystopian" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Futuristic or dystopian</button>
-          <button data-q="q2" data-a="Small-town or community-based" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Small-town or community-based</button>
+        <p class="font-medium">2. Pick a vibe:</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-q="q2" data-a="Magical" class="option-btn btn">Magical</button>
+          <button data-q="q2" data-a="Gritty" class="option-btn btn">Gritty</button>
+          <button data-q="q2" data-a="Romantic" class="option-btn btn">Romantic</button>
         </div>
       </div>
 
       <!-- Question 3 -->
       <div id="q3" class="space-y-2">
-        <p class="font-medium">3. Pick a main character energy:</p>
-        <div class="grid gap-2">
-          <button data-q="q3" data-a="Soft but secretly powerful" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Soft but secretly powerful</button>
-          <button data-q="q3" data-a="Brave but scared" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Brave but scared</button>
-          <button data-q="q3" data-a="Smart with emotional damage" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Smart with emotional damage</button>
-          <button data-q="q3" data-a="Bubbly outside, overthinking inside" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Bubbly outside, overthinking inside</button>
-          <button data-q="q3" data-a="Awkward but loveable" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Awkward but loveable</button>
+        <p class="font-medium">3. Length preference?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-q="q3" data-a="Quick read" class="option-btn btn">Quick read</button>
+          <button data-q="q3" data-a="Epic saga" class="option-btn btn">Epic saga</button>
+          <button data-q="q3" data-a="Surprise me" class="option-btn btn">Surprise me</button>
         </div>
       </div>
 
-      <!-- Question 4 -->
-      <div id="q4" class="space-y-2">
-        <p class="font-medium">4. What kind of story feels like a hug right now?</p>
-        <div class="grid gap-2">
-          <button data-q="q4" data-a="Cute and romantic" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Cute and romantic</button>
-          <button data-q="q4" data-a="Magical but gentle" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Magical but gentle</button>
-          <button data-q="q4" data-a="Quiet and heartfelt" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Quiet and heartfelt</button>
-          <button data-q="q4" data-a="Fun and adventurous" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Fun and adventurous</button>
-          <button data-q="q4" data-a="Reminds me I’m not alone" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">Reminds me I’m not alone</button>
-        </div>
-      </div>
-
-      <!-- Question 5 -->
-      <div id="q5" class="space-y-2">
-        <p class="font-medium">5. Your book should feel like...</p>
-        <div class="grid gap-2">
-          <button data-q="q5" data-a="A soft lullaby" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">A soft lullaby</button>
-          <button data-q="q5" data-a="A handwritten letter" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">A handwritten letter</button>
-          <button data-q="q5" data-a="A sparkler on a summer night" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">A sparkler on a summer night</button>
-          <button data-q="q5" data-a="A deep breath after crying" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">A deep breath after crying</button>
-          <button data-q="q5" data-a="A playlist of your favourite songs" class="option-btn px-4 py-2 border rounded hover:bg-emerald-100">A playlist of your favourite songs</button>
-        </div>
-      </div>
-
-      <button id="confirm" class="w-full py-3 bg-emerald-700 text-white font-semibold rounded-lg hover:bg-emerald-800 transition">
+      <button id="confirm" class="w-full py-2 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition">
         Confirm & Get Recommendation
       </button>
 
-      <div id="result" class="mt-6 p-4 bg-gray-100 rounded-lg hidden">
+      <div id="result" class="mt-4 p-4 bg-gray-100 rounded-lg hidden">
         <p class="text-gray-700 italic">Fetching recommendation…</p>
       </div>
     </div>
 
     <script>
       const answers = {};
+
       document.querySelectorAll('.option-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const q = btn.dataset.q;
           const a = btn.dataset.a;
           answers[q] = a;
-          document.querySelectorAll(`[data-q="${q}"]`).forEach(b => b.classList.remove('bg-emerald-200', 'ring-2', 'ring-emerald-500'));
+
+          // Highlight the selected button
+          document.querySelectorAll([data-q="${q}"])
+            .forEach(b => b.classList.remove('bg-emerald-200', 'ring-2', 'ring-emerald-500'));
           btn.classList.add('bg-emerald-200', 'ring-2', 'ring-emerald-500');
         });
       });
 
       document.getElementById('confirm').addEventListener('click', async () => {
-        const keys = ['q1', 'q2', 'q3', 'q4', 'q5'];
+        const keys = ['q1', 'q2', 'q3'];
         if (!keys.every(k => answers[k])) {
           alert('Please answer all questions!');
           return;
@@ -102,23 +76,29 @@
         resultDiv.classList.remove('hidden');
         resultDiv.innerHTML = '<p class="text-gray-700 italic">Fetching recommendation…</p>';
 
-        try {
-          const res = await fetch('https://stelliebackend.fly.dev/api/book-recommendation', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(answers)
-          });
+        const payload = {
+          mood: answers.q1,
+          vibe: answers.q2,
+          length: answers.q3
+        };
 
-          const data = await res.json();
-          resultDiv.innerHTML = `
-            <p class="font-semibold text-gray-800">We think you’ll love:</p>
-            <p class="mt-2 text-lg text-emerald-700">“${data.title}”</p>
-            <p class="mt-1 text-gray-700">by ${data.author}</p>
-          `;
-        } catch (err) {
-          resultDiv.innerHTML = `<p class="text-red-600">Oops, something went wrong.</p>`;
-          console.error(err);
-        }
+       try {
+  const res = await fetch('https://stelliebackend.fly.dev/api/book-recommendation', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await res.json();
+  resultDiv.innerHTML = 
+    <p class="font-semibold text-gray-800">We think you’ll love:</p>
+    <p class="mt-2 text-lg text-emerald-600">“${data.title}”</p>
+    <p class="mt-1 text-gray-700">by ${data.author}</p>
+  ;
+} catch (err) {
+  resultDiv.innerHTML = <p class="text-red-600">Oops, something went wrong.</p>;
+  console.error(err);
+}
       });
     </script>
   </body>
