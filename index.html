@@ -1,4 +1,13 @@
-<!-- Question 1 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Match Quiz</title>
+    <link href="/dist/styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+    <!-- Question 1 -->
 <div id="q1" class="space-y-2">
   <p class="font-medium">1. What kind of story pace are you in the mood for?</p>
   <div class="grid grid-cols-1 gap-2">
@@ -57,7 +66,9 @@
     <button data-q="q5" data-a="A playlist of your favourite songs" class="option-btn btn">A playlist of your favourite songs</button>
   </div>
 </div>
-<script>
+
+
+    <script>
   const answers = {};
 
   document.querySelectorAll('.option-btn').forEach(btn => {
@@ -111,4 +122,5 @@
     }
   });
 </script>
-
+  </body>
+</html>
