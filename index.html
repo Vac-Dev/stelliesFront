@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Match Quiz</title>
+    <link href="/stellies-frontend/public/dist/styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow p-6 space-y-6">
+      <h1 class="text-3xl font-bold text-gray-800 text-center">Find Your Next Read</h1>
+
+      <!-- Question 1 -->
+      <div id="q1" class="space-y-2">
+        <p class="font-medium">1. Your mood today?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-q="q1" data-a="Adventurous" class="option-btn btn">Adventurous</button>
+          <button data-q="q1" data-a="Cozy" class="option-btn btn">Cozy</button>
+          <button data-q="q1" data-a="Thoughtful" class="option-btn btn">Thoughtful</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div id="q2" class="space-y-2">
+        <p class="font-medium">2. Pick a vibe:</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-q="q2" data-a="Magical" class="option-btn btn">Magical</button>
+          <button data-q="q2" data-a="Gritty" class="option-btn btn">Gritty</button>
+          <button data-q="q2" data-a="Romantic" class="option-btn btn">Romantic</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div id="q3" class="space-y-2">
+        <p class="font-medium">3. Length preference?</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button data-q="q3" data-a="Quick read" class="option-btn btn">Quick read</button>
+          <button data-q="q3" data-a="Epic saga" class="option-btn btn">Epic saga</button>
+          <button data-q="q3" data-a="Surprise me" class="option-btn btn">Surprise me</button>
+        </div>
+      </div>
+
+      <button id="confirm" class="w-full py-2 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition">
+        Confirm & Get Recommendation
+      </button>
+
+      <div id="result" class="mt-4 p-4 bg-gray-100 rounded-lg hidden">
+        <p class="text-gray-700 italic">Fetching recommendation…</p>
+      </div>
+    </div>
+
+    <script>
+      const answers = {};
+
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const q = btn.dataset.q;
+          const a = btn.dataset.a;
+          answers[q] = a;
+
+          // Highlight the selected button
+          document.querySelectorAll(`[data-q="${q}"]`)
+            .forEach(b => b.classList.remove('bg-emerald-200', 'ring-2', 'ring-emerald-500'));
+          btn.classList.add('bg-emerald-200', 'ring-2', 'ring-emerald-500');
+        });
+      });
+
+      document.getElementById('confirm').addEventListener('click', async () => {
+        const keys = ['q1', 'q2', 'q3'];
+        if (!keys.every(k => answers[k])) {
+          alert('Please answer all questions!');
+          return;
+        }
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.classList.remove('hidden');
+        resultDiv.innerHTML = '<p class="text-gray-700 italic">Fetching recommendation…</p>';
+
+        const payload = {
+          mood: answers.q1,
+          vibe: answers.q2,
+          length: answers.q3
+        };
+
+        try {
+          const res = await fetch('http://localhost:3000/api/book-recommendation', {
+            // Replace with your deployed backend URL in production
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+          resultDiv.innerHTML = `
+            <p class="font-semibold text-gray-800">We think you’ll love:</p>
+            <p class="mt-2 text-lg text-emerald-600">“${data.title}”</p>
+            <p class="mt-1 text-gray-700">by ${data.author}</p>
+          `;
+        } catch (err) {
+          resultDiv.innerHTML = `<p class="text-red-600">Oops, something went wrong.</p>`;
+          console.error(err);
+        }
+      });
+    </script>
+  </body>
+</html>
