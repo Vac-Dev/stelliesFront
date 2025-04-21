@@ -1,141 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book Match Quiz</title>
-  <link href="/dist/styles.css" rel="stylesheet" />
-</head>
-<body class="bg-black text-white flex items-center justify-center min-h-screen p-4">
-  <div class="max-w-2xl w-full bg-white text-black rounded-2xl shadow p-6 space-y-8">
-    <h1 class="text-3xl font-bold text-center text-green-900">Find Your Next Read</h1>
+<html lang="en" class="bg-black text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Match Quiz</title>
+    <link href="/dist/styles.css" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex items-center justify-center bg-black p-4">
+    <div class="w-full max-w-2xl bg-white text-black rounded-2xl shadow-lg p-6 space-y-6">
+      <h1 class="text-3xl font-bold text-emerald-700 text-center">Find Your Next Read</h1>
 
-    <div id="questions" class="space-y-6">
-
-      <!-- Question 1 -->
-      <div id="q1">
-        <p class="font-medium">1. What kind of story pace are you in the mood for?</p>
-        <div class="grid grid-cols-1 gap-2">
-          <button data-q="q1" data-a="Fast and plot-heavy" class="option-btn btn">Fast and plot-heavy</button>
-          <button data-q="q1" data-a="Slow and emotional" class="option-btn btn">Slow and emotional</button>
-          <button data-q="q1" data-a="Balanced" class="option-btn btn">Balanced</button>
-          <button data-q="q1" data-a="Light and easy" class="option-btn btn">Light and easy</button>
-          <button data-q="q1" data-a="Intense and thought-provoking" class="option-btn btn">Intense and thought-provoking</button>
-        </div>
+      <!-- Questions -->
+      <div id="quiz-container" class="space-y-6">
+        <!-- Each question block will be inserted here -->
       </div>
 
-      <!-- Question 2 -->
-      <div id="q2">
-        <p class="font-medium">2. What kind of world do you want to escape into?</p>
-        <div class="grid grid-cols-1 gap-2">
-          <button data-q="q2" data-a="Realistic and relatable" class="option-btn btn">Realistic and relatable</button>
-          <button data-q="q2" data-a="Historical" class="option-btn btn">Historical</button>
-          <button data-q="q2" data-a="Magical or fantastical" class="option-btn btn">Magical or fantastical</button>
-          <button data-q="q2" data-a="Futuristic or dystopian" class="option-btn btn">Futuristic or dystopian</button>
-          <button data-q="q2" data-a="Small-town or community-based" class="option-btn btn">Small-town or community-based</button>
-        </div>
-      </div>
+      <button id="confirm" class="w-full py-3 bg-emerald-700 text-white font-semibold rounded-lg hover:bg-emerald-800 transition">
+        Confirm & Get Recommendation
+      </button>
 
-      <!-- Question 3 -->
-      <div id="q3">
-        <p class="font-medium">3. Pick a main character energy:</p>
-        <div class="grid grid-cols-1 gap-2">
-          <button data-q="q3" data-a="Soft but secretly powerful" class="option-btn btn">Soft but secretly powerful</button>
-          <button data-q="q3" data-a="Brave but scared" class="option-btn btn">Brave but scared</button>
-          <button data-q="q3" data-a="Smart with emotional damage" class="option-btn btn">Smart with emotional damage</button>
-          <button data-q="q3" data-a="Bubbly outside, overthinking inside" class="option-btn btn">Bubbly outside, overthinking inside</button>
-          <button data-q="q3" data-a="Awkward but loveable" class="option-btn btn">Awkward but loveable</button>
-        </div>
-      </div>
-
-      <!-- Question 4 -->
-      <div id="q4">
-        <p class="font-medium">4. What kind of story feels like a hug right now?</p>
-        <div class="grid grid-cols-1 gap-2">
-          <button data-q="q4" data-a="Cute and romantic" class="option-btn btn">Cute and romantic</button>
-          <button data-q="q4" data-a="Magical but gentle" class="option-btn btn">Magical but gentle</button>
-          <button data-q="q4" data-a="Quiet and heartfelt" class="option-btn btn">Quiet and heartfelt</button>
-          <button data-q="q4" data-a="Fun and adventurous" class="option-btn btn">Fun and adventurous</button>
-          <button data-q="q4" data-a="Reminds me I’m not alone" class="option-btn btn">Reminds me I’m not alone</button>
-        </div>
-      </div>
-
-      <!-- Question 5 -->
-      <div id="q5">
-        <p class="font-medium">5. Your book should feel like...</p>
-        <div class="grid grid-cols-1 gap-2">
-          <button data-q="q5" data-a="A soft lullaby" class="option-btn btn">A soft lullaby</button>
-          <button data-q="q5" data-a="A handwritten letter" class="option-btn btn">A handwritten letter</button>
-          <button data-q="q5" data-a="A sparkler on a summer night" class="option-btn btn">A sparkler on a summer night</button>
-          <button data-q="q5" data-a="A deep breath after crying" class="option-btn btn">A deep breath after crying</button>
-          <button data-q="q5" data-a="A playlist of your favourite songs" class="option-btn btn">A playlist of your favourite songs</button>
-        </div>
+      <div id="result" class="mt-6 p-4 bg-gray-100 rounded-lg hidden">
+        <p class="text-gray-700 italic">Fetching recommendation…</p>
       </div>
     </div>
 
-    <!-- Confirm -->
-    <button id="confirm" class="w-full py-2 mt-4 bg-green-900 text-white font-semibold rounded-lg hover:bg-green-800 transition">
-      Confirm & Get Recommendation
-    </button>
+    <script>
+      const questions = [
+        {
+          id: "q1",
+          text: "1. What kind of story pace are you in the mood for?",
+          options: [
+            "Fast and plot-heavy",
+            "Slow and emotional",
+            "Balanced",
+            "Light and easy",
+            "Intense and thought-provoking",
+          ],
+        },
+        {
+          id: "q2",
+          text: "2. What kind of world do you want to escape into?",
+          options: [
+            "Realistic and relatable",
+            "Historical",
+            "Magical or fantastical",
+            "Futuristic or dystopian",
+            "Small-town or community-based",
+          ],
+        },
+        {
+          id: "q3",
+          text: "3. Pick a main character energy:",
+          options: [
+            "Soft but secretly powerful",
+            "Brave but scared",
+            "Smart with emotional damage",
+            "Bubbly outside, overthinking inside",
+            "Awkward but loveable",
+          ],
+        },
+        {
+          id: "q4",
+          text: "4. What kind of story feels like a hug right now?",
+          options: [
+            "Cute and romantic",
+            "Magical but gentle",
+            "Quiet and heartfelt",
+            "Fun and adventurous",
+            "Reminds me I’m not alone",
+          ],
+        },
+        {
+          id: "q5",
+          text: "5. Your book should feel like...",
+          options: [
+            "A soft lullaby",
+            "A handwritten letter",
+            "A sparkler on a summer night",
+            "A deep breath after crying",
+            "A playlist of your favourite songs",
+          ],
+        },
+      ];
 
-    <!-- Result -->
-    <div id="result" class="mt-4 p-4 bg-gray-100 rounded-lg hidden">
-      <p class="text-gray-700 italic">Fetching recommendation…</p>
-    </div>
-  </div>
+      const answers = {};
+      const container = document.getElementById("quiz-container");
 
-  <script>
-    const answers = {};
+      questions.forEach(({ id, text, options }) => {
+        const section = document.createElement("div");
+        section.className = "space-y-2";
+        section.innerHTML = `<p class="font-medium">${text}</p>`;
 
-    document.querySelectorAll('.option-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const q = btn.dataset.q;
-        const a = btn.dataset.a;
-        answers[q] = a;
+        const btnGroup = document.createElement("div");
+        btnGroup.className = "grid grid-cols-1 gap-2";
 
-        document.querySelectorAll(`[data-q="${q}"]`)
-          .forEach(b => b.classList.remove('bg-green-200', 'ring-2', 'ring-green-500'));
-        btn.classList.add('bg-green-200', 'ring-2', 'ring-green-500');
-      });
-    });
+        options.forEach((opt) => {
+          const btn = document.createElement("button");
+          btn.className =
+            "option-btn btn px-4 py-2 border border-gray-300 rounded-lg hover:bg-emerald-100 transition text-left";
+          btn.dataset.q = id;
+          btn.dataset.a = opt;
+          btn.textContent = opt;
 
-    document.getElementById('confirm').addEventListener('click', async () => {
-      const keys = ['q1', 'q2', 'q3', 'q4', 'q5'];
-      if (!keys.every(k => answers[k])) {
-        alert('Please answer all questions!');
-        return;
-      }
+          btn.addEventListener("click", () => {
+            answers[id] = opt;
+            document
+              .querySelectorAll(`[data-q="${id}"]`)
+              .forEach((b) =>
+                b.classList.remove("bg-emerald-200", "ring-2", "ring-emerald-500")
+              );
+            btn.classList.add("bg-emerald-200", "ring-2", "ring-emerald-500");
+          });
 
-      const resultDiv = document.getElementById('result');
-      resultDiv.classList.remove('hidden');
-      resultDiv.innerHTML = '<p class="text-gray-700 italic">Fetching recommendation…</p>';
-
-      const payload = {
-        q1: answers.q1,
-        q2: answers.q2,
-        q3: answers.q3,
-        q4: answers.q4,
-        q5: answers.q5
-      };
-
-      try {
-        const res = await fetch('https://stelliebackend.fly.dev/api/book-recommendation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          btnGroup.appendChild(btn);
         });
 
-        const data = await res.json();
-        resultDiv.innerHTML = `
-          <p class="font-semibold text-gray-800">We think you’ll love:</p>
-          <p class="mt-2 text-lg text-green-800">“${data.title}”</p>
-          <p class="mt-1 text-gray-700">by ${data.author}</p>
-        `;
-      } catch (err) {
-        resultDiv.innerHTML = `<p class="text-red-600">Oops, something went wrong.</p>`;
-        console.error(err);
-      }
-    });
-  </script>
-</body>
+        section.appendChild(btnGroup);
+        container.appendChild(section);
+      });
+
+      document.getElementById("confirm").addEventListener("click", async () => {
+        const keys = ["q1", "q2", "q3", "q4", "q5"];
+        if (!keys.every((k) => answers[k])) {
+          alert("Please answer all questions!");
+          return;
+        }
+
+        const resultDiv = document.getElementById("result");
+        resultDiv.classList.remove("hidden");
+        resultDiv.innerHTML =
+          '<p class="text-gray-700 italic">Fetching recommendation…</p>';
+
+        try {
+          const res = await fetch("https://stelliebackend.fly.dev/api/book-recommendation", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              q1: answers.q1,
+              q2: answers.q2,
+              q3: answers.q3,
+              q4: answers.q4,
+              q5: answers.q5,
+            }),
+          });
+
+          const data = await res.json();
+          resultDiv.innerHTML = `
+            <p class="font-semibold text-gray-800">We think you’ll love:</p>
+            <p class="mt-2 text-lg text-emerald-700">“${data.title}”</p>
+            <p class="mt-1 text-gray-700">by ${data.author}</p>
+          `;
+        } catch (err) {
+          resultDiv.innerHTML = `<p class="text-red-600">Oops, something went wrong.</p>`;
+          console.error(err);
+        }
+      });
+    </script>
+  </body>
 </html>
